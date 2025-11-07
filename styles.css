@@ -325,6 +325,35 @@ body {
     right: 0;
 }
 
+/* Menu Close Button - appears inside sidebar */
+.menu-close-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.menu-close-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #F5F5F5;
+    border-radius: 50%;
+    transition: opacity 0.2s ease;
+}
+
+.menu-close-button:hover .menu-close-icon {
+    opacity: 0.8;
+}
+
 .menu-nav {
     display: flex;
     flex-direction: column;
@@ -370,5 +399,10 @@ body {
         flex-shrink: 0;
     }
     
+    /* Mobile adjustments for close button */
+    .menu-close-button {
+        top: 1rem;
+        right: 1.5rem;
+    }
 }
 
