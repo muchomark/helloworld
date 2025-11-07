@@ -311,7 +311,7 @@ body {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 66.666%;
+    width: 25%; /* Desktop: 25% of viewport */
     height: 100vh;
     background-color: var(--color-red);
     z-index: 1000;
@@ -386,7 +386,7 @@ body {
 /* Responsive adjustments */
 @media (max-width: 767px) {
     .menu-overlay {
-        width: 75%;
+        width: 50%; /* Mobile: 50% of viewport */
     }
     
     .page-header {
