@@ -42,19 +42,32 @@ class Router {
     }
     
     navigate(path) {
-        // Normalize path - remove leading/trailing slashes and handle base path
-        let normalizedPath = path.replace(/^\/+|\/+$/g, '');
+        // Get base path for GitHub Pages
+        const basePath = this.getBasePath();
+        
+        // Remove base path from the path if present
+        let cleanPath = path;
+        if (basePath && cleanPath.startsWith(`/${basePath}/`)) {
+            cleanPath = cleanPath.replace(`/${basePath}`, '');
+        } else if (basePath && cleanPath === `/${basePath}`) {
+            cleanPath = '/';
+        }
+        
+        // Normalize path - remove leading/trailing slashes
+        let normalizedPath = cleanPath.replace(/^\/+|\/+$/g, '');
         if (normalizedPath === '') {
             normalizedPath = '/';
         }
-        
-        // Get base path for GitHub Pages
-        const basePath = this.getBasePath();
         
         // Map path to route (handle both with and without leading slash)
         let routeKey = normalizedPath;
         if (routeKey !== '/' && !routeKey.startsWith('/')) {
             routeKey = '/' + routeKey;
+        }
+        
+        // Only allow valid routes - redirect invalid routes to landing page
+        if (!this.routes.hasOwnProperty(routeKey)) {
+            routeKey = '/';
         }
         
         // Hide all pages
@@ -63,13 +76,13 @@ class Router {
         });
         
         // Show target page
-        const pageId = this.routes[routeKey] || this.routes['/'];
+        const pageId = this.routes[routeKey];
         const targetPage = document.getElementById(pageId);
         if (targetPage) {
             targetPage.classList.add('active');
         }
         
-        // Update URL without reload
+        // Update URL without reload (only if route is valid)
         let fullPath = routeKey;
         if (basePath && basePath !== '') {
             fullPath = `/${basePath}${routeKey === '/' ? '' : routeKey}`;
