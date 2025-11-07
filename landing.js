@@ -16,9 +16,41 @@ class LandingPage {
         this.resizeCanvas();
         window.addEventListener('resize', () => this.resizeCanvas());
         
-        // Add click listeners to dots
+        // Add click and touch listeners to dots for mobile support
         this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.handleDotClick(index));
+            // Store touch start time on the element
+            let touchStartTime = 0;
+            let touchStartX = 0;
+            let touchStartY = 0;
+            
+            // Handle click events (desktop)
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.handleDotClick(index);
+            });
+            
+            // Handle touch events (mobile)
+            dot.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                touchStartTime = Date.now();
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+            }, { passive: false });
+            
+            dot.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                const touch = e.changedTouches[0];
+                const touchDuration = Date.now() - touchStartTime;
+                const deltaX = Math.abs(touch.clientX - touchStartX);
+                const deltaY = Math.abs(touch.clientY - touchStartY);
+                const delta = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                
+                // Only trigger if it was a quick tap (not a drag) and within reasonable distance
+                if (touchDuration < 300 && delta < 10) {
+                    this.handleDotClick(index);
+                }
+            }, { passive: false });
         });
     }
     

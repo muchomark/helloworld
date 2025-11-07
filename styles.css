@@ -61,6 +61,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+    z-index: 2; /* Ensure dots are above canvas */
 }
 
 .dot {
@@ -71,6 +72,14 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.2s ease;
+    /* Improve touch targets for mobile */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    /* Increase hit area for better mobile interaction */
+    padding: 10px;
+    margin: -10px;
+    z-index: 3; /* Ensure dots are clickable/touchable */
+    pointer-events: auto; /* Explicitly enable pointer events */
 }
 
 .dot:hover {
@@ -79,6 +88,16 @@ body {
 
 .dot.clicked {
     background-color: var(--color-red);
+}
+
+/* Improve touch interaction on mobile */
+@media (max-width: 767px) {
+    .dot {
+        width: 24px;
+        height: 24px;
+        padding: 12px;
+        margin: -12px;
+    }
 }
 
 /* Desktop dot positions */
