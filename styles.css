@@ -169,21 +169,20 @@ body {
     text-transform: lowercase;
     white-space: nowrap; /* Keep text on one line */
     animation: scroll-right-to-left 20s linear infinite;
-    display: block;
+    display: inline-block;
     flex: 1;
     margin-right: 2rem; /* Space between text and menu button */
-    min-width: 0; /* Allow flex item to shrink below content size */
     position: relative;
     will-change: transform; /* Optimize animation performance */
-    width: max-content; /* Allow element to be wider than container */
+    /* Remove min-width constraint to allow text to be wider */
 }
 
 /* Animation for scrolling text right to left */
 @keyframes scroll-right-to-left {
-    0% {
-        transform: translateX(calc(100vw - 4rem - 24px));
+    from {
+        transform: translateX(100%);
     }
-    100% {
+    to {
         transform: translateX(calc(-100% - 2rem));
     }
 }
