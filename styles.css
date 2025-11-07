@@ -160,7 +160,15 @@ body {
     padding: 1.5rem 2rem;
     background-color: var(--color-white);
     position: relative;
+}
+
+/* Container for scrolling text - positioned to the left of button */
+.site-title-wrapper {
+    flex: 1;
+    margin-right: 2rem;
     overflow: hidden; /* Hide text that goes off screen */
+    position: relative;
+    min-width: 0; /* Allow flex item to shrink */
 }
 
 .site-title {
@@ -170,14 +178,8 @@ body {
     white-space: nowrap; /* Keep text on one line */
     animation: scroll-right-to-left 20s linear infinite;
     display: inline-block;
-    flex: 1;
-    margin-right: 2rem; /* Space between text and menu button */
     position: relative;
     will-change: transform; /* Optimize animation performance */
-    min-width: 0; /* Allow flex item to shrink */
-    overflow: visible; /* Allow text to overflow for animation */
-    z-index: 1; /* Ensure text is below menu button */
-    pointer-events: none; /* Allow clicks to pass through to button */
 }
 
 /* Animation for scrolling text right to left */
@@ -186,7 +188,7 @@ body {
         transform: translateX(100%);
     }
     to {
-        transform: translateX(calc(-100% - 4rem)); /* Account for margin-right and button space */
+        transform: translateX(-100%);
     }
 }
 
@@ -209,8 +211,6 @@ body {
     justify-content: center;
     flex-shrink: 0; /* Prevent button from shrinking */
     position: relative;
-    z-index: 10; /* Ensure button is above scrolling text */
-    pointer-events: auto; /* Ensure button is clickable */
 }
 
 .menu-icon {
