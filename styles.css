@@ -185,8 +185,12 @@ body {
 
 .site-title-text {
     display: inline-block;
-    padding-right: 3rem; /* Space between duplicated text instances */
     white-space: nowrap;
+}
+
+/* Spacing between text instances - matches container width so second appears when first disappears */
+.site-title-text:first-child {
+    padding-right: calc(100vw - 8rem); /* Desktop: viewport width minus header padding (2rem each side) and button space */
 }
 
 /* Animation for scrolling text right to left - continuous loop */
@@ -195,7 +199,7 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-50% - 1.5rem)); /* Move by exactly one instance width (50% of total) plus half padding */
+        transform: translateX(calc(-50% - (100vw - 8rem) / 2)); /* Move by one instance width plus half spacing */
     }
 }
 
@@ -356,6 +360,21 @@ body {
     .menu-button {
         min-width: 24px;
         flex-shrink: 0;
+    }
+    
+    /* Adjust spacing for mobile - smaller container width */
+    .site-title-text:first-child {
+        padding-right: calc(100vw - 5rem); /* Mobile: viewport width minus header padding (1.5rem each side) and button space */
+    }
+    
+    /* Adjust animation for mobile spacing - override desktop animation */
+    @keyframes scroll-right-to-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-50% - (100vw - 5rem) / 2)); /* Move by one instance width plus half spacing for mobile */
+        }
     }
 }
 
