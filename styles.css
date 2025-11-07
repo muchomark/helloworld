@@ -174,14 +174,16 @@ body {
     margin-right: 2rem; /* Space between text and menu button */
     min-width: 0; /* Allow flex item to shrink below content size */
     position: relative;
+    will-change: transform; /* Optimize animation performance */
+    overflow: visible; /* Allow text to overflow for animation */
 }
 
 /* Animation for scrolling text right to left */
 @keyframes scroll-right-to-left {
-    from {
-        transform: translateX(100vw);
+    0% {
+        transform: translateX(calc(100vw - 4rem - 24px));
     }
-    to {
+    100% {
         transform: translateX(calc(-100% - 2rem));
     }
 }
