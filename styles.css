@@ -362,5 +362,9 @@ body {
         flex-shrink: 0;
     }
     
+    /* Reduce scrolling text font size by 25% on mobile */
+    .site-title {
+        font-size: calc(0.875rem * 0.75); /* 25% smaller: 0.65625rem */
+    }
 }
 
