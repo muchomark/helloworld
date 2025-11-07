@@ -159,12 +159,37 @@ body {
     align-items: center;
     padding: 1.5rem 2rem;
     background-color: var(--color-white);
+    position: relative;
 }
 
 .site-title {
     font-size: 0.875rem;
     font-weight: 400;
     text-transform: lowercase;
+    white-space: nowrap; /* Keep text on one line */
+    animation: scroll-right-to-left 20s linear infinite;
+    display: inline-block;
+    flex: 1;
+    overflow: hidden; /* Hide text that goes off screen */
+    margin-right: 2rem; /* Space between text and menu button */
+    position: relative;
+}
+
+/* Animation for scrolling text right to left */
+@keyframes scroll-right-to-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Respect user's motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .site-title {
+        animation: none;
+    }
 }
 
 .menu-button {
