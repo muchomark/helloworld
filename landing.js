@@ -77,8 +77,6 @@ class LandingPage {
         // Check if all dots are connected
         if (this.clickedDots.length === 3) {
             this.checkCompletion();
-        } else if (this.clickedDots.length === 1) {
-            this.landingText.textContent = 'connect the dots to enter...';
         }
     }
     
@@ -124,7 +122,7 @@ class LandingPage {
             this.clickedDots[2] === this.dotOrder[2];
         
         if (isCorrectOrder) {
-            this.landingText.textContent = 'dots connected, thank you.';
+            this.landingText.textContent = 'dots connected, thank you';
             
             // Navigate to hello page after showing success message for 2 seconds
             setTimeout(() => {
