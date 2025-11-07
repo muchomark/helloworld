@@ -213,7 +213,7 @@ body {
 /* Mobile font size override - must come after prefers-reduced-motion to ensure it applies */
 @media (max-width: 767px) {
     .site-title {
-        font-size: calc(0.875rem * 0.5625) !important; /* 50% smaller than desktop: 0.4921875rem */
+        font-size: 0.875rem !important; /* Same as desktop size (100% increase from previous mobile size) */
     }
 }
 
