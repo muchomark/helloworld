@@ -210,6 +210,13 @@ body {
     }
 }
 
+/* Mobile font size override - must come after prefers-reduced-motion to ensure it applies */
+@media (max-width: 767px) {
+    .site-title {
+        font-size: calc(0.875rem * 0.5625) !important; /* 50% smaller than desktop: 0.4921875rem */
+    }
+}
+
 .menu-button {
     background: none;
     border: none;
@@ -362,9 +369,5 @@ body {
         flex-shrink: 0;
     }
     
-    /* Reduce scrolling text font size by 50% total on mobile (25% + 25%) */
-    .site-title {
-        font-size: calc(0.875rem * 0.5625); /* 50% smaller than desktop: 0.4921875rem */
-    }
 }
 
