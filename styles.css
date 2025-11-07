@@ -177,6 +177,7 @@ body {
     min-width: 0; /* Allow flex item to shrink */
     overflow: visible; /* Allow text to overflow for animation */
     z-index: 1; /* Ensure text is below menu button */
+    pointer-events: none; /* Allow clicks to pass through to button */
 }
 
 /* Animation for scrolling text right to left */
@@ -209,6 +210,7 @@ body {
     flex-shrink: 0; /* Prevent button from shrinking */
     position: relative;
     z-index: 10; /* Ensure button is above scrolling text */
+    pointer-events: auto; /* Ensure button is clickable */
 }
 
 .menu-icon {
