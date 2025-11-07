@@ -169,6 +169,7 @@ body {
     overflow: hidden; /* Hide text that goes off screen */
     position: relative;
     min-width: 0; /* Allow flex item to shrink */
+    max-width: calc(100% - 3rem); /* Ensure space for button (24px + 2rem margin) */
 }
 
 .site-title {
@@ -184,11 +185,11 @@ body {
 
 /* Animation for scrolling text right to left */
 @keyframes scroll-right-to-left {
-    from {
+    0% {
         transform: translateX(100%);
     }
-    to {
-        transform: translateX(-100%);
+    100% {
+        transform: translateX(calc(-100% - 2rem));
     }
 }
 
@@ -206,11 +207,13 @@ body {
     padding: 0;
     width: 24px;
     height: 24px;
+    min-width: 24px; /* Ensure button always has space */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0; /* Prevent button from shrinking */
     position: relative;
+    z-index: 10; /* Ensure button is always on top */
 }
 
 .menu-icon {
@@ -336,6 +339,17 @@ body {
     
     .page-content {
         padding: 1.5rem;
+    }
+    
+    /* Ensure button is visible on mobile */
+    .site-title-wrapper {
+        margin-right: 1rem; /* Reduce margin on mobile */
+        max-width: calc(100% - 2.5rem); /* Account for smaller margin + button */
+    }
+    
+    .menu-button {
+        min-width: 24px;
+        flex-shrink: 0;
     }
 }
 
