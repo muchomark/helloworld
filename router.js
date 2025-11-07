@@ -32,18 +32,29 @@ class Router {
                 this.closeAllMenus();
             }
         });
+        
+        // Handle 404 redirect from GitHub Pages
+        if (sessionStorage.redirect) {
+            const redirect = sessionStorage.redirect;
+            sessionStorage.removeItem('redirect');
+            this.navigate(redirect);
+        }
     }
     
     navigate(path) {
-        // Normalize path
-        if (path === '' || path === '/') {
-            path = '/';
+        // Normalize path - remove leading/trailing slashes and handle base path
+        let normalizedPath = path.replace(/^\/+|\/+$/g, '');
+        if (normalizedPath === '') {
+            normalizedPath = '/';
         }
         
-        // Handle GitHub Pages base path if needed
+        // Get base path for GitHub Pages
         const basePath = this.getBasePath();
-        if (basePath && path.startsWith('/')) {
-            path = path.substring(1);
+        
+        // Map path to route (handle both with and without leading slash)
+        let routeKey = normalizedPath;
+        if (routeKey !== '/' && !routeKey.startsWith('/')) {
+            routeKey = '/' + routeKey;
         }
         
         // Hide all pages
@@ -52,14 +63,18 @@ class Router {
         });
         
         // Show target page
-        const pageId = this.routes[path] || this.routes['/'];
+        const pageId = this.routes[routeKey] || this.routes['/'];
         const targetPage = document.getElementById(pageId);
         if (targetPage) {
             targetPage.classList.add('active');
         }
         
         // Update URL without reload
-        const fullPath = basePath ? `/${basePath}${path === '/' ? '' : '/' + path}` : path;
+        let fullPath = routeKey;
+        if (basePath && basePath !== '') {
+            fullPath = `/${basePath}${routeKey === '/' ? '' : routeKey}`;
+        }
+        
         if (window.location.pathname !== fullPath) {
             window.history.pushState({}, '', fullPath);
         }
@@ -71,9 +86,11 @@ class Router {
     getBasePath() {
         // For GitHub Pages, extract repo name from path
         const path = window.location.pathname;
-        const parts = path.split('/').filter(p => p);
-        // If we're on GitHub Pages and not at root, return the repo name
-        if (parts.length > 0 && !path.includes('index.html')) {
+        const parts = path.split('/').filter(p => p && p !== 'index.html');
+        
+        // If we're on GitHub Pages (not at root domain), return the repo name
+        // Check if we're on github.io domain
+        if (window.location.hostname.includes('github.io') && parts.length > 0) {
             return parts[0];
         }
         return '';
