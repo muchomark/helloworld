@@ -177,19 +177,25 @@ body {
     font-weight: 400;
     text-transform: lowercase;
     white-space: nowrap; /* Keep text on one line */
-    animation: scroll-right-to-left 20s linear infinite;
-    display: inline-block;
+    display: inline-flex;
     position: relative;
     will-change: transform; /* Optimize animation performance */
+    animation: scroll-right-to-left 20s linear infinite;
 }
 
-/* Animation for scrolling text right to left */
+.site-title-text {
+    display: inline-block;
+    padding-right: 3rem; /* Space between duplicated text instances */
+    white-space: nowrap;
+}
+
+/* Animation for scrolling text right to left - continuous loop */
 @keyframes scroll-right-to-left {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-100% - 2rem));
+        transform: translateX(calc(-50% - 1.5rem)); /* Move by exactly one instance width (50% of total) plus half padding */
     }
 }
 
