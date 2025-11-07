@@ -128,11 +128,7 @@ class LandingPage {
             
             // Navigate to hello page after showing success message for 2 seconds
             setTimeout(() => {
-                if (typeof router !== 'undefined') {
-                    router.navigate('/hello');
-                } else {
-                    window.location.href = '/hello';
-                }
+                window.location.href = '/hello';
             }, 2000);
         } else {
             // Reset if wrong order
@@ -153,31 +149,8 @@ class LandingPage {
     }
 }
 
-// Initialize landing page when it's active
+// Initialize landing page
 document.addEventListener('DOMContentLoaded', () => {
-    const landingPage = document.getElementById('landing-page');
-    if (landingPage && landingPage.classList.contains('active')) {
-        window.landingPageInstance = new LandingPage();
-    }
+    new LandingPage();
 });
-
-// Re-initialize when landing page becomes active
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-            const landingPage = document.getElementById('landing-page');
-            if (landingPage && landingPage.classList.contains('active') && !window.landingPageInstance) {
-                window.landingPageInstance = new LandingPage();
-            } else if (landingPage && !landingPage.classList.contains('active') && window.landingPageInstance) {
-                // Clean up when leaving landing page
-                window.landingPageInstance = null;
-            }
-        }
-    });
-});
-
-const landingPage = document.getElementById('landing-page');
-if (landingPage) {
-    observer.observe(landingPage, { attributes: true });
-}
 

@@ -5,25 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christopher Hello</title>
     <script>
-        // GitHub Pages 404 redirect for client-side routing
-        // This ensures that direct URLs to /hello, /work, /play work correctly
+        // GitHub Pages 404 redirect - map clean URLs to HTML files
         var path = window.location.pathname;
-        var repoName = path.split('/')[1]; // Get repo name from path like /helloworld/hello
+        var pathParts = path.split('/').filter(function(p) { return p; });
+        var repoName = pathParts[0] || ''; // Get repo name from path like /helloworld/hello
         
-        if (repoName) {
-            // We're on GitHub Pages with a repo name
-            sessionStorage.redirect = path;
-            window.location.replace('/' + repoName + '/');
+        // Map clean URLs to HTML files
+        var routeMap = {
+            'hello': 'hello.html',
+            'work': 'work.html',
+            'play': 'play.html'
+        };
+        
+        // Extract the route (second part of path)
+        var route = pathParts[1] || '';
+        
+        if (routeMap[route]) {
+            // Redirect to the corresponding HTML file
+            if (repoName) {
+                window.location.replace('/' + repoName + '/' + routeMap[route]);
+            } else {
+                window.location.replace('/' + routeMap[route]);
+            }
         } else {
-            // Fallback for root domain
-            sessionStorage.redirect = path;
-            window.location.replace('/');
+            // Default to index.html
+            if (repoName) {
+                window.location.replace('/' + repoName + '/');
+            } else {
+                window.location.replace('/');
+            }
         }
     </script>
 </head>
 <body>
     <script>
-        // Fallback if sessionStorage doesn't work
+        // Fallback redirect
         window.location.replace('/');
     </script>
 </body>
