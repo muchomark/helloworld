@@ -128,7 +128,7 @@ class LandingPage {
             
             // Navigate to hello page after showing success message for 2 seconds
             setTimeout(() => {
-                window.location.href = '/hello';
+                window.location.href = 'hello.html';
             }, 2000);
         } else {
             // Reset if wrong order
