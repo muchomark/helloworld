@@ -126,14 +126,14 @@ class LandingPage {
         if (isCorrectOrder) {
             this.landingText.textContent = 'dots connected, thank you.';
             
-            // Navigate to hello page after a brief delay
+            // Navigate to hello page after showing success message for 2 seconds
             setTimeout(() => {
                 if (typeof router !== 'undefined') {
                     router.navigate('/hello');
                 } else {
                     window.location.href = '/hello';
                 }
-            }, 1000);
+            }, 2000);
         } else {
             // Reset if wrong order
             this.landingText.textContent = 'connect the dots to enter';
