@@ -188,9 +188,9 @@ body {
     white-space: nowrap;
 }
 
-/* Spacing between text instances - matches container width so second appears when first disappears */
+/* Spacing between text instances - will be set dynamically via JavaScript */
 .site-title-text:first-child {
-    padding-right: calc(100vw - 8rem); /* Desktop: viewport width minus header padding (2rem each side) and button space */
+    padding-right: 0; /* Will be set dynamically */
 }
 
 /* Animation for scrolling text right to left - continuous loop */
@@ -199,7 +199,7 @@ body {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-50% - (100vw - 8rem) / 2)); /* Move by one instance width plus half spacing */
+        transform: translateX(var(--scroll-distance, -50%)); /* Will be set dynamically */
     }
 }
 
@@ -362,19 +362,5 @@ body {
         flex-shrink: 0;
     }
     
-    /* Adjust spacing for mobile - smaller container width */
-    .site-title-text:first-child {
-        padding-right: calc(100vw - 5rem); /* Mobile: viewport width minus header padding (1.5rem each side) and button space */
-    }
-    
-    /* Adjust animation for mobile spacing - override desktop animation */
-    @keyframes scroll-right-to-left {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc(-50% - (100vw - 5rem) / 2)); /* Move by one instance width plus half spacing for mobile */
-        }
-    }
 }
 
