@@ -174,7 +174,9 @@ body {
     margin-right: 2rem; /* Space between text and menu button */
     position: relative;
     will-change: transform; /* Optimize animation performance */
-    /* Remove min-width constraint to allow text to be wider */
+    min-width: 0; /* Allow flex item to shrink */
+    overflow: visible; /* Allow text to overflow for animation */
+    z-index: 1; /* Ensure text is below menu button */
 }
 
 /* Animation for scrolling text right to left */
@@ -183,7 +185,7 @@ body {
         transform: translateX(100%);
     }
     to {
-        transform: translateX(calc(-100% - 2rem));
+        transform: translateX(calc(-100% - 4rem)); /* Account for margin-right and button space */
     }
 }
 
@@ -204,6 +206,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; /* Prevent button from shrinking */
+    position: relative;
+    z-index: 10; /* Ensure button is above scrolling text */
 }
 
 .menu-icon {
