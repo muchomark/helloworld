@@ -320,6 +320,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: visible; /* Ensure close button is not clipped */
+    box-shadow: 5px 4px 4px 10px rgba(0, 0, 0, 0.25); /* Drop shadow: X:5, Y:4, Blur:4, Spread:10, Color:#000000 @ 25% opacity */
 }
 
 .menu-overlay.active {
