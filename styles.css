@@ -214,6 +214,7 @@ body {
 @media (max-width: 767px) {
     .site-title {
         font-size: calc(0.875rem * 0.825) !important; /* 17.5% smaller than desktop: 0.721875rem (25% reduction + 10% increase) */
+        letter-spacing: -0.05em !important; /* -5% letter spacing for better readability on mobile */
     }
 }
 
