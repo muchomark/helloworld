@@ -296,6 +296,10 @@ body {
     line-height: 1.6;
 }
 
+.section-text strong {
+    font-weight: 500;
+}
+
 .contact-link {
     color: var(--color-red);
     text-decoration: underline;
