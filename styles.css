@@ -300,6 +300,28 @@ body {
     font-weight: 500;
 }
 
+.work-role-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.work-role {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.work-role strong {
+    font-weight: 500;
+}
+
+.work-duration {
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: right;
+}
+
 .contact-link {
     color: var(--color-red);
     text-decoration: underline;
