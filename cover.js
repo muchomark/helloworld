@@ -1,8 +1,8 @@
-// Play page menu functionality
+// Cover page menu functionality
 document.addEventListener('DOMContentLoaded', () => {
-    const menuButton = document.getElementById('menu-button-play');
-    const menuOverlay = document.getElementById('menu-overlay-play');
-    const menuCloseButton = document.getElementById('menu-close-button-play');
+    const menuButton = document.getElementById('menu-button-cover');
+    const menuOverlay = document.getElementById('menu-overlay-cover');
+    const menuCloseButton = document.getElementById('menu-close-button-cover');
     
     if (menuButton && menuOverlay) {
         menuButton.addEventListener('click', () => {
