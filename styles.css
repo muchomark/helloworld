@@ -369,8 +369,8 @@ body {
 
 .menu-nav {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 2rem;
     width: 100%;
     padding: 1.5rem;
     align-items: start;
@@ -380,7 +380,7 @@ body {
 
 .menu-link {
     color: var(--color-white);
-    font-size: 1rem;
+    font-size: 1.35rem;
     font-weight: 400; /* Regular for selectable but not current */
     text-decoration: none;
     text-transform: none; /* Preserve original capitalization */
@@ -406,7 +406,7 @@ body {
 
 .menu-letter {
     color: var(--color-white);
-    font-size: 1rem;
+    font-size: 1.35rem;
     font-weight: 200; /* Extra Light for non-selectable */
     text-transform: none; /* Preserve original casing (Aa, Bb, etc.) */
     pointer-events: none; /* Non-clickable */
@@ -441,13 +441,13 @@ body {
     }
     
     .menu-nav {
-        gap: 0.75rem 1rem;
+        gap: 1rem 1.5rem;
         padding: 1rem;
     }
     
     .menu-link,
     .menu-letter {
-        font-size: 0.875rem;
+        font-size: 1.125rem;
     }
     
     /* Mobile adjustments for close button */
