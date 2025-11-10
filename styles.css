@@ -365,23 +365,40 @@ body {
 }
 
 .menu-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 2rem;
+    width: 100%;
+    padding: 2rem;
+    align-items: start;
 }
 
 .menu-link {
     color: var(--color-white);
-    font-size: 1.5rem;
-    font-weight: 400;
+    font-size: 1.25rem;
+    font-weight: 400; /* Regular for selectable but not current */
     text-decoration: none;
     text-transform: lowercase;
     transition: opacity 0.2s ease;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .menu-link:hover {
     opacity: 0.8;
+}
+
+.menu-link.current {
+    font-weight: 500; /* Medium for current page */
+}
+
+.menu-letter {
+    color: var(--color-white);
+    font-size: 1.25rem;
+    font-weight: 200; /* Extra Light for non-selectable */
+    text-transform: lowercase;
+    pointer-events: none; /* Non-clickable */
+    user-select: none;
 }
 
 /* Responsive adjustments */
@@ -407,6 +424,16 @@ body {
     .menu-button {
         min-width: 24px;
         flex-shrink: 0;
+    }
+    
+    .menu-nav {
+        gap: 1rem 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .menu-link,
+    .menu-letter {
+        font-size: 1rem;
     }
     
     /* Mobile adjustments for close button */
