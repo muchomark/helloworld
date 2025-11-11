@@ -7,6 +7,7 @@ class LandingPage {
         this.ctx = this.canvas.getContext('2d');
         this.landingText = document.getElementById('landing-text');
         this.dots = document.querySelectorAll('.dot');
+        this.landingContainer = document.querySelector('.landing-container');
         
         this.init();
     }
@@ -129,11 +130,21 @@ class LandingPage {
                 window.location.href = 'hello.html';
             }, 2000);
         } else {
-            // Reset if wrong order
-            this.landingText.textContent = 'connect the dots to enter';
+            // Show failure feedback
+            this.landingText.textContent = 'try again';
+            
+            // Add shake animation
+            this.landingContainer.classList.add('shake');
+            
+            // Remove shake class after animation completes
+            setTimeout(() => {
+                this.landingContainer.classList.remove('shake');
+            }, 500);
+            
+            // Reset after showing feedback
             setTimeout(() => {
                 this.reset();
-            }, 1000);
+            }, 1500);
         }
     }
     
