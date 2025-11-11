@@ -337,6 +337,11 @@ body {
     color: var(--color-red);
     text-decoration: underline;
     transition: opacity 0.2s ease;
+    cursor: pointer;
+    pointer-events: auto;
+    display: inline;
+    position: relative;
+    z-index: 10;
 }
 
 .contact-link:hover {
